@@ -1,0 +1,57 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.2037
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Akitaux.Twitch.Core", "src\Akitaux.Twitch.Core\Akitaux.Twitch.Core.csproj", "{43D9D1C9-FC0B-4460-B9BD-778210A1EAD5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Akitaux.Twitch.Rest", "src\Akitaux.Twitch.Rest\Akitaux.Twitch.Rest.csproj", "{D3C50CDB-22FD-43EF-8F2C-EFA686360964}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Akitaux.Twitch.Helix", "src\Akitaux.Twitch.Helix\Akitaux.Twitch.Helix.csproj", "{C65776F3-F180-4960-AA27-BC35540B0288}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Rest", "Rest", "{6EE59DFA-7208-4375-80E8-D7F792F50D69}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Akitaux.Twitch.Kraken", "src\Akitaux.Twitch.Kraken\Akitaux.Twitch.Kraken.csproj", "{CFD9C46F-1A41-4204-A30E-F5D2360DE8C8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Akitaux.Twitch.Authorization", "src\Akitaux.Twitch.Authorization\Akitaux.Twitch.Authorization.csproj", "{AEA735F0-6756-4727-A8C2-A360F6B31A00}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{43D9D1C9-FC0B-4460-B9BD-778210A1EAD5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43D9D1C9-FC0B-4460-B9BD-778210A1EAD5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43D9D1C9-FC0B-4460-B9BD-778210A1EAD5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43D9D1C9-FC0B-4460-B9BD-778210A1EAD5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D3C50CDB-22FD-43EF-8F2C-EFA686360964}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D3C50CDB-22FD-43EF-8F2C-EFA686360964}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D3C50CDB-22FD-43EF-8F2C-EFA686360964}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D3C50CDB-22FD-43EF-8F2C-EFA686360964}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C65776F3-F180-4960-AA27-BC35540B0288}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C65776F3-F180-4960-AA27-BC35540B0288}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C65776F3-F180-4960-AA27-BC35540B0288}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C65776F3-F180-4960-AA27-BC35540B0288}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CFD9C46F-1A41-4204-A30E-F5D2360DE8C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CFD9C46F-1A41-4204-A30E-F5D2360DE8C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CFD9C46F-1A41-4204-A30E-F5D2360DE8C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CFD9C46F-1A41-4204-A30E-F5D2360DE8C8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AEA735F0-6756-4727-A8C2-A360F6B31A00}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AEA735F0-6756-4727-A8C2-A360F6B31A00}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AEA735F0-6756-4727-A8C2-A360F6B31A00}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AEA735F0-6756-4727-A8C2-A360F6B31A00}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{D3C50CDB-22FD-43EF-8F2C-EFA686360964} = {6EE59DFA-7208-4375-80E8-D7F792F50D69}
+		{C65776F3-F180-4960-AA27-BC35540B0288} = {6EE59DFA-7208-4375-80E8-D7F792F50D69}
+		{CFD9C46F-1A41-4204-A30E-F5D2360DE8C8} = {6EE59DFA-7208-4375-80E8-D7F792F50D69}
+		{AEA735F0-6756-4727-A8C2-A360F6B31A00} = {6EE59DFA-7208-4375-80E8-D7F792F50D69}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {58650AD6-9301-4AEC-BE85-86D6FEC38424}
+	EndGlobalSection
+EndGlobal

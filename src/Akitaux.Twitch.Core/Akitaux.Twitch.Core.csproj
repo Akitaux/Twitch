@@ -1,0 +1,13 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <RootNamespace>Akitaux.Twitch</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="RestEase" Version="1.4.5" />
+    <PackageReference Include="Voltaic.Serialization.Json" Version="0.2.1-build-00011" />
+  </ItemGroup>
+
+</Project>
