@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Xml;
 
-namespace Akitaux.Twitch.Helix
+namespace Akitaux.Twitch.Helix.Requests
 {
     public class GetExtensionAnalyticsParams : QueryMap
     {

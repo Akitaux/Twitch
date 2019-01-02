@@ -1,4 +1,5 @@
 ﻿using Akitaux.Twitch.Helix.Entities;
+using Akitaux.Twitch.Helix.Requests;
 using Akitaux.Twitch.Rest;
 using RestEase;
 using System;
@@ -23,7 +24,7 @@ namespace Akitaux.Twitch.Helix
         public JsonSerializer JsonSerializer { get; }
 
         public TwitchHelixClient(JsonSerializer serializer = null, IRateLimiter rateLimiter = null)
-            : this("https://api.twitch.tv/", serializer) { }
+            : this("https://api.twitch.tv/helix", serializer) { }
         public TwitchHelixClient(string url, JsonSerializer serializer = null, IRateLimiter rateLimiter = null)
         {
             JsonSerializer = serializer ?? new JsonSerializer();
@@ -55,6 +56,18 @@ namespace Akitaux.Twitch.Helix
         {
             args.Validate();
             return _api.GetBitsLeaderboardAsync(args);
+        }
+
+        // Clips
+
+        public Task<TwitchResponse<Clip>> CreateClipAsync(CreateClipParams args)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<TwitchResponse<Clip>> GetClipsAsync(GetClipsParams args)
+        {
+            throw new NotImplementedException();
         }
     }
 }

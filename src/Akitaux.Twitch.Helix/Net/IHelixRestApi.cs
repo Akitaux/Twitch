@@ -1,8 +1,9 @@
-﻿using Akitaux.Twitch.Helix.Entities;
-using RestEase;
-using System;
+﻿using System;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
+using Akitaux.Twitch.Helix.Entities;
+using Akitaux.Twitch.Helix.Requests;
+using RestEase;
 
 namespace Akitaux.Twitch.Helix
 {
@@ -13,16 +14,20 @@ namespace Akitaux.Twitch.Helix
         AuthenticationHeaderValue Authorization { get; set; }
 
         // Analytics
-        [Get("helix/analytics/extensions")]
+        [Get("analytics/extensions")]
         Task<TwitchResponse<ExtensionAnalyticReport>> GetExtensionAnalyticsAsync([QueryMap]GetExtensionAnalyticsParams args);
-        [Get("helix/analytics/games")]
+        [Get("analytics/games")]
         Task<TwitchResponse<GameAnalyticReport>> GetGameAnalyticsAsync([QueryMap]GetGameAnalyticsParams args);
 
         // Bits
-        [Get("helix/bits/leaderboard")]
+        [Get("bits/leaderboard")]
         Task<TwitchResponse<BitsLeader>> GetBitsLeaderboardAsync([QueryMap]GetBitsLeaderboardParams args);
 
         // Clips
+        [Post("clips")]
+        Task<TwitchResponse<Clip>> CreateClipAsync([QueryMap]CreateClipParams args);
+        [Get("clips")]
+        Task<TwitchResponse<Clip>> GetClipsAsync([QueryMap]GetClipsParams args);
 
         // Entitlements
 

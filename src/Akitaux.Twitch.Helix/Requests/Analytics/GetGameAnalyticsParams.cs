@@ -1,12 +1,11 @@
-﻿using Akitaux.Twitch.Helix.Entities;
-using Akitaux.Twitch.Rest;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Xml;
+using Akitaux.Twitch.Helix.Entities;
 
-namespace Akitaux.Twitch.Helix
+namespace Akitaux.Twitch.Helix.Requests
 {
-    public class GetGameAnalyticsParams : QueryMap
+    public class GetGameAnalyticsParams : Rest.QueryMap
     {
         public const string RequiredScope = "analytics:read:games";
 
