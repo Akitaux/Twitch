@@ -11,9 +11,19 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Akitaux.Twitch.Helix", "src
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Rest", "Rest", "{6EE59DFA-7208-4375-80E8-D7F792F50D69}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Akitaux.Twitch.Kraken", "src\Akitaux.Twitch.Kraken\Akitaux.Twitch.Kraken.csproj", "{CFD9C46F-1A41-4204-A30E-F5D2360DE8C8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Akitaux.Twitch.Kraken", "src\Akitaux.Twitch.Kraken\Akitaux.Twitch.Kraken.csproj", "{CFD9C46F-1A41-4204-A30E-F5D2360DE8C8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Akitaux.Twitch.Authorization", "src\Akitaux.Twitch.Authorization\Akitaux.Twitch.Authorization.csproj", "{AEA735F0-6756-4727-A8C2-A360F6B31A00}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Akitaux.Twitch.Identity", "src\Akitaux.Twitch.Identity\Akitaux.Twitch.Identity.csproj", "{AEA735F0-6756-4727-A8C2-A360F6B31A00}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Socket", "Socket", "{DDC6DF09-A774-4433-BDC0-2B05B347156E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Akitaux.Twitch.WebSocket", "src\Akitaux.Twitch.WebSocket\Akitaux.Twitch.WebSocket.csproj", "{E848E85E-97E1-4816-81FC-BB95E1398438}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Akitaux.Twitch.Chat", "src\Akitaux.Twitch.Chat\Akitaux.Twitch.Chat.csproj", "{42489D77-4057-4116-A949-B94FE184922C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Akitaux.Twitch.Pubsub", "src\Akitaux.Twitch.Pubsub\Akitaux.Twitch.Pubsub.csproj", "{FE9941D6-E021-4797-A9FD-F709BB7DADD0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Akitaux.Twitch.Bot", "src\Akitaux.Twitch.Bot\Akitaux.Twitch.Bot.csproj", "{609D5720-6275-4878-A1B1-6C2EC911F45B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,6 +51,22 @@ Global
 		{AEA735F0-6756-4727-A8C2-A360F6B31A00}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AEA735F0-6756-4727-A8C2-A360F6B31A00}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AEA735F0-6756-4727-A8C2-A360F6B31A00}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E848E85E-97E1-4816-81FC-BB95E1398438}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E848E85E-97E1-4816-81FC-BB95E1398438}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E848E85E-97E1-4816-81FC-BB95E1398438}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E848E85E-97E1-4816-81FC-BB95E1398438}.Release|Any CPU.Build.0 = Release|Any CPU
+		{42489D77-4057-4116-A949-B94FE184922C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42489D77-4057-4116-A949-B94FE184922C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42489D77-4057-4116-A949-B94FE184922C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{42489D77-4057-4116-A949-B94FE184922C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FE9941D6-E021-4797-A9FD-F709BB7DADD0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE9941D6-E021-4797-A9FD-F709BB7DADD0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE9941D6-E021-4797-A9FD-F709BB7DADD0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE9941D6-E021-4797-A9FD-F709BB7DADD0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{609D5720-6275-4878-A1B1-6C2EC911F45B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{609D5720-6275-4878-A1B1-6C2EC911F45B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{609D5720-6275-4878-A1B1-6C2EC911F45B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{609D5720-6275-4878-A1B1-6C2EC911F45B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -50,6 +76,10 @@ Global
 		{C65776F3-F180-4960-AA27-BC35540B0288} = {6EE59DFA-7208-4375-80E8-D7F792F50D69}
 		{CFD9C46F-1A41-4204-A30E-F5D2360DE8C8} = {6EE59DFA-7208-4375-80E8-D7F792F50D69}
 		{AEA735F0-6756-4727-A8C2-A360F6B31A00} = {6EE59DFA-7208-4375-80E8-D7F792F50D69}
+		{E848E85E-97E1-4816-81FC-BB95E1398438} = {DDC6DF09-A774-4433-BDC0-2B05B347156E}
+		{42489D77-4057-4116-A949-B94FE184922C} = {DDC6DF09-A774-4433-BDC0-2B05B347156E}
+		{FE9941D6-E021-4797-A9FD-F709BB7DADD0} = {DDC6DF09-A774-4433-BDC0-2B05B347156E}
+		{609D5720-6275-4878-A1B1-6C2EC911F45B} = {DDC6DF09-A774-4433-BDC0-2B05B347156E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {58650AD6-9301-4AEC-BE85-86D6FEC38424}

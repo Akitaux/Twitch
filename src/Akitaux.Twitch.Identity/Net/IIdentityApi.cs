@@ -1,13 +1,13 @@
-﻿using Akitaux.Twitch.Authorization.Requests;
+﻿using Akitaux.Twitch.Identity.Requests;
 using RestEase;
 using System;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 
-namespace Akitaux.Twitch.Authorization.Net
+namespace Akitaux.Twitch.Identity.Net
 {
     [Header("User-Agent", "Akitaux (https://github.com/Akitaux/Twitch)")]
-    public interface IAuthorizationRestApi : IDisposable
+    public interface IIdentityApi : IDisposable
     {
         [Header("Authorization")]
         AuthenticationHeaderValue Authorization { get; set; }

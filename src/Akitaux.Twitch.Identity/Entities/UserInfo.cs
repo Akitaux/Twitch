@@ -1,7 +1,7 @@
 ﻿using System;
 using Voltaic.Serialization;
 
-namespace Akitaux.Twitch.Authorization.Entities
+namespace Akitaux.Twitch.Identity.Entities
 {
     public class UserInfo
     {

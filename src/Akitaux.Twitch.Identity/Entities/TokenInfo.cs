@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Akitaux.Twitch.Authorization
+namespace Akitaux.Twitch.Identity
 {
     public class TokenInfo
     {

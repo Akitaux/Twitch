@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Voltaic.Serialization;
 
-namespace Akitaux.Twitch.Authorization.Requests
+namespace Akitaux.Twitch.Identity.Requests
 {
     public class AuthorizationParams
     {
