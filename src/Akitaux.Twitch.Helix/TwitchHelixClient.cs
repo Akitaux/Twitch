@@ -1,41 +1,34 @@
-﻿using Akitaux.Twitch.Helix.Entities;
+﻿using System;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Threading.Tasks;
+using Akitaux.Twitch.Helix.Entities;
 using Akitaux.Twitch.Helix.Requests;
 using Akitaux.Twitch.Rest;
 using RestEase;
-using System;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Reflection;
-using System.Threading.Tasks;
 using Voltaic.Serialization.Json;
 
 namespace Akitaux.Twitch.Helix
 {
-    public class TwitchHelixClient : IHelixRestApi, IDisposable
+    public class TwitchHelixClient : BaseRestClient, IHelixRestApi, IDisposable
     {
-        public static string Version { get; } =
-            typeof(TwitchHelixClient).GetTypeInfo().Assembly.GetCustomAttribute<AssemblyInformationalVersionAttribute>()?.InformationalVersion ??
-            typeof(TwitchHelixClient).GetTypeInfo().Assembly.GetName().Version.ToString(3) ??
-            "Unknown";
-
         private readonly IHelixRestApi _api;
-
+        
         public AuthenticationHeaderValue Authorization { get => _api.Authorization; set => _api.Authorization = value; }
-        public JsonSerializer JsonSerializer { get; }
 
         public TwitchHelixClient(JsonSerializer serializer = null, IRateLimiter rateLimiter = null)
-            : this("https://api.twitch.tv/helix", serializer) { }
+            : this("https://api.twitch.tv/helix", serializer, rateLimiter) { }
         public TwitchHelixClient(string url, JsonSerializer serializer = null, IRateLimiter rateLimiter = null)
+            : base(serializer)
         {
-            JsonSerializer = serializer ?? new JsonSerializer();
             rateLimiter = rateLimiter ?? new DefaultRateLimiter();
 
             var httpClient = new HttpClient { BaseAddress = new Uri(url) };
-            httpClient.DefaultRequestHeaders.Add("User-Agent", $"Akitaux (https://github.com/Akitaux/Twitch), v{Version})");
+            httpClient.DefaultRequestHeaders.Add("User-Agent", $"Akitaux/v{Version} (https://github.com/Akitaux/Twitch)");
 
             _api = RestClient.For<IHelixRestApi>(new WumpusRequester(httpClient, JsonSerializer, rateLimiter));
         }
-        public void Dispose() => _api.Dispose();
+        public override void Dispose() => _api.Dispose();
         
         //  Analytics
 
@@ -62,12 +55,32 @@ namespace Akitaux.Twitch.Helix
 
         public Task<TwitchResponse<Clip>> CreateClipAsync(CreateClipParams args)
         {
-            throw new NotImplementedException();
+            return _api.CreateClipAsync(args);
         }
 
         public Task<TwitchResponse<Clip>> GetClipsAsync(GetClipsParams args)
         {
-            throw new NotImplementedException();
+            args.Validate();
+            return _api.GetClipsAsync(args);
         }
+
+        // Entitlements
+
+        // Games
+
+        // Streams
+
+        public Task<TwitchResponse<Stream>> GetStreamsAsync(GetStreamsParams args = null)
+        {
+            args?.Validate();
+            return _api.GetStreamsAsync(args);
+        }
+
+        // Users
+
+        // Videos
+
+
+
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Xml;
 using Akitaux.Twitch.Helix.Entities;
+using Voltaic;
 
 namespace Akitaux.Twitch.Helix.Requests
 {

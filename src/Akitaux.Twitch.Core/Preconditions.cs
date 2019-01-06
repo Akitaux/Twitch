@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
+using Voltaic;
 
 namespace Akitaux.Twitch
 {
@@ -15,6 +15,26 @@ namespace Akitaux.Twitch
         {
             if (msg == null) return new ArgumentNullException(name);
             else return new ArgumentNullException(name, msg);
+        }
+
+        // Collections
+
+        public static void CountGreaterThan<T>(List<T> obj, int value, string name, string msg = null) { if (obj.Count > value) throw CreateCountGreaterThanException(name, msg, value); }
+        public static void CountGreaterThan<T>(Optional<List<T>> obj, int value, string name, string msg = null) { if (obj.Value.Count > value) throw CreateCountGreaterThanException(name, msg, value); }
+
+        private static ArgumentException CreateCountGreaterThanException(string name, string msg, int value)
+        {
+            if (msg == null) return new ArgumentException($"List must have at most {value} entries", name);
+            else return new ArgumentException(msg, name);
+        }
+
+        public static void CountLessThan<T>(List<T> obj, int value, string name, string msg = null) { if (obj.Count > value) throw CreateCountLessThanException(name, msg, value); }
+        public static void CountLessThan<T>(Optional<List<T>> obj, int value, string name, string msg = null) { if (obj.Value.Count > value) throw CreateCountLessThanException(name, msg, value); }
+
+        private static ArgumentException CreateCountLessThanException(string name, string msg, int value)
+        {
+            if (msg == null) return new ArgumentException($"List must have at least {value} entries", name);
+            else return new ArgumentException(msg, name);
         }
 
         //Strings

@@ -17,13 +17,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Akitaux.Twitch.Identity", "
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Socket", "Socket", "{DDC6DF09-A774-4433-BDC0-2B05B347156E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Akitaux.Twitch.WebSocket", "src\Akitaux.Twitch.WebSocket\Akitaux.Twitch.WebSocket.csproj", "{E848E85E-97E1-4816-81FC-BB95E1398438}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Akitaux.Twitch.WebSocket", "src\Akitaux.Twitch.WebSocket\Akitaux.Twitch.WebSocket.csproj", "{E848E85E-97E1-4816-81FC-BB95E1398438}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Akitaux.Twitch.Chat", "src\Akitaux.Twitch.Chat\Akitaux.Twitch.Chat.csproj", "{42489D77-4057-4116-A949-B94FE184922C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Akitaux.Twitch.Chat", "src\Akitaux.Twitch.Chat\Akitaux.Twitch.Chat.csproj", "{42489D77-4057-4116-A949-B94FE184922C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Akitaux.Twitch.Pubsub", "src\Akitaux.Twitch.Pubsub\Akitaux.Twitch.Pubsub.csproj", "{FE9941D6-E021-4797-A9FD-F709BB7DADD0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Akitaux.Twitch.Pubsub", "src\Akitaux.Twitch.Pubsub\Akitaux.Twitch.Pubsub.csproj", "{FE9941D6-E021-4797-A9FD-F709BB7DADD0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Akitaux.Twitch.Bot", "src\Akitaux.Twitch.Bot\Akitaux.Twitch.Bot.csproj", "{609D5720-6275-4878-A1B1-6C2EC911F45B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Akitaux.Twitch.Bot", "src\Akitaux.Twitch.Bot\Akitaux.Twitch.Bot.csproj", "{609D5720-6275-4878-A1B1-6C2EC911F45B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleApp1", "src\ConsoleApp1\ConsoleApp1\ConsoleApp1.csproj", "{B1D65EF7-EA07-4412-8C66-1BBB5E31C656}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -67,6 +69,10 @@ Global
 		{609D5720-6275-4878-A1B1-6C2EC911F45B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{609D5720-6275-4878-A1B1-6C2EC911F45B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{609D5720-6275-4878-A1B1-6C2EC911F45B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B1D65EF7-EA07-4412-8C66-1BBB5E31C656}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B1D65EF7-EA07-4412-8C66-1BBB5E31C656}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B1D65EF7-EA07-4412-8C66-1BBB5E31C656}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B1D65EF7-EA07-4412-8C66-1BBB5E31C656}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

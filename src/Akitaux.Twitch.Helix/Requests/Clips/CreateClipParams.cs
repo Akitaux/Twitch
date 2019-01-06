@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Voltaic;
 
 namespace Akitaux.Twitch.Helix.Requests
 {

@@ -1,4 +1,5 @@
 ﻿using System;
+using Voltaic;
 using Voltaic.Serialization;
 
 namespace Akitaux.Twitch.Helix.Entities

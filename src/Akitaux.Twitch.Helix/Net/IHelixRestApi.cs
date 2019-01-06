@@ -7,7 +7,6 @@ using RestEase;
 
 namespace Akitaux.Twitch.Helix
 {
-    [Header("User-Agent", "Akitaux (https://github.com/Akitaux/Twitch)")]
     internal interface IHelixRestApi : IDisposable
     {
         [Header("Authorization")]
@@ -34,6 +33,8 @@ namespace Akitaux.Twitch.Helix
         // Games
 
         // Streams
+        [Get("streams")]
+        Task<TwitchResponse<Stream>> GetStreamsAsync([QueryMap]GetStreamsParams args = null);
 
         // Users
 

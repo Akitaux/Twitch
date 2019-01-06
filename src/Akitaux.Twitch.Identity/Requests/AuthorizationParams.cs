@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Voltaic;
 using Voltaic.Serialization;
 
 namespace Akitaux.Twitch.Identity.Requests

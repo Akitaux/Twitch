@@ -1,13 +1,13 @@
 ﻿using Akitaux.Twitch.Rest.Entities;
-using System.Collections.Generic;
+using Voltaic;
 using Voltaic.Serialization;
 
 namespace Akitaux.Twitch.Helix
 {
-    public class TwitchResponse<T>
+    public class TwitchResponse<T> where T : class
     {
         [ModelProperty("data")]
-        public Optional<List<T>> Data { get; set; }
+        public T[] Data { get; set; }
         [ModelProperty("total")]
         public Optional<int> Total { get; set; }
         [ModelProperty("date_range")]

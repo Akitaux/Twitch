@@ -60,6 +60,11 @@ namespace Akitaux.Twitch.Rest
                         var bytes = await response.Content.ReadAsByteArrayAsync().ConfigureAwait(false);
                         if (bytes.Length > 0)
                         {
+                            RestError error = null;
+                            try { error = _serializer.Read<RestError>(bytes.AsSpan()); } catch { }
+                            if (error != null)
+                                throw new TwitchRestException(response.StatusCode, error.Status, error.Message);
+
                             Utf8String msg = null;
                             try { msg = new Utf8String(bytes); } catch { }
                             if (!(msg is null))
