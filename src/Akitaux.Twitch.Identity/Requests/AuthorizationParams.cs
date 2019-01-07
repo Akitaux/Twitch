@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using Voltaic;
+﻿using Voltaic;
 using Voltaic.Serialization;
 
 namespace Akitaux.Twitch.Identity.Requests
@@ -7,18 +6,18 @@ namespace Akitaux.Twitch.Identity.Requests
     public class AuthorizationParams
     {
         [ModelProperty("client_id")]
-        public Optional<string> ClientId { get; set; }
+        public Optional<Utf8String> ClientId { get; set; }
         [ModelProperty("redirect_uri")]
-        public Optional<string> RedirectUri { get; set; }
+        public Optional<Utf8String> RedirectUri { get; set; }
         [ModelProperty("response_type")]
-        public Optional<string> ResponseType { get; set; }
+        public Optional<Utf8String> ResponseType { get; set; }
         [ModelProperty("scopes")]
-        public Optional<List<string>> Scopes { get; set; }
+        public Optional<Utf8String[]> Scopes { get; set; }
         [ModelProperty("claims")]
-        public Optional<string> Claims { get; set; }
+        public Optional<Utf8String> Claims { get; set; }
         [ModelProperty("nonce")]
-        public Optional<string> Nonce { get; set; }
+        public Optional<Utf8String> Nonce { get; set; }
         [ModelProperty("state")]
-        public Optional<string> State { get; set; }
+        public Optional<Utf8String> State { get; set; }
     }
 }

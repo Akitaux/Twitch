@@ -25,8 +25,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Akitaux.Twitch.Pubsub", "sr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Akitaux.Twitch.Bot", "src\Akitaux.Twitch.Bot\Akitaux.Twitch.Bot.csproj", "{609D5720-6275-4878-A1B1-6C2EC911F45B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleApp1", "src\ConsoleApp1\ConsoleApp1\ConsoleApp1.csproj", "{B1D65EF7-EA07-4412-8C66-1BBB5E31C656}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -69,10 +67,6 @@ Global
 		{609D5720-6275-4878-A1B1-6C2EC911F45B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{609D5720-6275-4878-A1B1-6C2EC911F45B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{609D5720-6275-4878-A1B1-6C2EC911F45B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B1D65EF7-EA07-4412-8C66-1BBB5E31C656}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B1D65EF7-EA07-4412-8C66-1BBB5E31C656}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B1D65EF7-EA07-4412-8C66-1BBB5E31C656}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B1D65EF7-EA07-4412-8C66-1BBB5E31C656}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -84,8 +84,6 @@ namespace Akitaux.Twitch.Rest
             foreach (var pathParam in request.PathParams.Concat(request.PathProperties))
             {
                 var serialized = pathParam.SerializeToString(FormatProvider);
-                if (serialized.Key != "channelId" && serialized.Key != "guildId")
-                    continue;
 
                 // Space needs to be treated separately
                 string value = pathParam.UrlEncode ? WebUtility.UrlEncode(serialized.Value ?? string.Empty).Replace("+", "%20") : serialized.Value;

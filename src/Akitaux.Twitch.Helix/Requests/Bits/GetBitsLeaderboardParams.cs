@@ -15,7 +15,7 @@ namespace Akitaux.Twitch.Helix.Requests
         public Optional<DateTime> StartedAt { get; set; }
         public Optional<ulong> UserId { get; set; }
 
-        public override IDictionary<string, object> GetQueryMap()
+        public override IDictionary<string, object> CreateQueryMap()
         {
             var dict = new Dictionary<string, object>();
             if (Count.IsSpecified)

@@ -10,7 +10,7 @@ namespace Akitaux.Twitch.Helix.Requests
         public ulong BroadcasterId { get; set; }
         public Optional<bool> HasDelay { get; set; }
 
-        public override IDictionary<string, object> GetQueryMap()
+        public override IDictionary<string, object> CreateQueryMap()
         {
             var dict = new Dictionary<string, object>();
             dict["broadcaster_id"] = BroadcasterId.ToString();

@@ -19,6 +19,6 @@ namespace Akitaux.Twitch.Helix
     public class Pagination
     {
         [ModelProperty("cursor")]
-        public string Cursor { get; set; }
+        public Utf8String Cursor { get; set; }
     }
 }

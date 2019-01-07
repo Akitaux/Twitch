@@ -29,8 +29,19 @@ namespace Akitaux.Twitch.Helix
         Task<TwitchResponse<Clip>> GetClipsAsync([QueryMap]GetClipsParams args);
 
         // Entitlements
+        [Get("entitlements/upload")]
+        Task<TwitchResponse<GrantsUploadUrl>> CreateGrantsUploadUrlAsync([QueryMap]CreateGrantsUploadUrlParams args);
+        // Todo, they changed the response structure for these two requests for absolutely no reason
+        //[Get("entitlements/code")]
+        //Task<TwitchResponse<object>> GetCodeStatusAsync([QueryMap]object args = null);
+        //[Post("entitlements/code")]
+        //Task<TwitchResponse<object>> GetCodeStatusAsync([QueryMap]object args = null);
 
         // Games
+        [Get("games/top")]
+        Task<TwitchResponse<Game>> GetTopGamesAsync([QueryMap]GetTopGamesParams args = null);
+        [Get("games")]
+        Task<TwitchResponse<Game>> GetGamesAsync([QueryMap]GetGamesParams args);
 
         // Streams
         [Get("streams")]

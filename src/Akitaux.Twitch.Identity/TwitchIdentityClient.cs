@@ -16,13 +16,13 @@ namespace Akitaux.Twitch.Identity
 
         public AuthenticationHeaderValue Authorization { get => _api.Authorization; set => _api.Authorization = value; }
 
-        public TwitchIdentityClient(JsonSerializer serializer = null, IRateLimiter rateLimiter = null)
+        public TwitchIdentityClient(TwitchJsonSerializer serializer = null, IRateLimiter rateLimiter = null)
             : this("https://id.twitch.tv/", serializer) { }
-        public TwitchIdentityClient(string url, JsonSerializer serializer = null, IRateLimiter rateLimiter = null)
+        public TwitchIdentityClient(string url, TwitchJsonSerializer serializer = null, IRateLimiter rateLimiter = null)
             : base(serializer)
         {
             var httpClient = new HttpClient { BaseAddress = new Uri(url) };
-            httpClient.DefaultRequestHeaders.Add("User-Agent", $"Akitaux (https://github.com/Akitaux/Twitch), v{Version})");
+            httpClient.DefaultRequestHeaders.Add("User-Agent", $"Akitaux/v{Version} (https://github.com/Akitaux/Twitch)");
 
             _api = RestClient.For<IIdentityApi>(new WumpusRequester(httpClient, JsonSerializer, rateLimiter));
         }

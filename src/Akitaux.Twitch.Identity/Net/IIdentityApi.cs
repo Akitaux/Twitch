@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 
 namespace Akitaux.Twitch.Identity.Net
 {
-    [Header("User-Agent", "Akitaux (https://github.com/Akitaux/Twitch)")]
     public interface IIdentityApi : IDisposable
     {
         [Header("Authorization")]

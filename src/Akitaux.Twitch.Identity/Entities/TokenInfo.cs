@@ -1,13 +1,12 @@
-﻿using System.Collections.Generic;
-using Voltaic;
+﻿using Voltaic;
 
-namespace Akitaux.Twitch.Identity
+namespace Akitaux.Twitch.Identity.Entities
 {
     public class TokenInfo
     {
-        public Optional<string> ClientId { get; set; }
-        public Optional<string> Login { get; set; }
-        public Optional<List<string>> Scopes { get; set; }
+        public Optional<Utf8String> ClientId { get; set; }
+        public Optional<Utf8String> Login { get; set; }
+        public Optional<Utf8String[]> Scopes { get; set; }
         public Optional<ulong> UserId { get; set; }
     }
 }

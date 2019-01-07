@@ -12,13 +12,13 @@ namespace Akitaux.Twitch.Helix.Requests
         public const string RequiredScope = "analytics:read:extensions";
 
         public Optional<int> First { get; set; }
-        public Optional<string> After { get; set; }
-        public Optional<string> ExtensionId { get; set; }
+        public Optional<Utf8String> After { get; set; }
+        public Optional<Utf8String> ExtensionId { get; set; }
         public Optional<DateTime> StartedAt { get; set; }
         public Optional<DateTime> EndedAt { get; set; }
         public Optional<AnalyticType> Type { get; set; }
 
-        public override IDictionary<string, object> GetQueryMap()
+        public override IDictionary<string, object> CreateQueryMap()
         {
             var dict = new Dictionary<string, object>();
             if (First.IsSpecified)
@@ -44,9 +44,9 @@ namespace Akitaux.Twitch.Helix.Requests
                 Preconditions.AtMost(First, 100, nameof(First));
             }
             if (After.IsSpecified)
-                Preconditions.NotNullOrWhitespace(After, nameof(After));
+                Preconditions.NotNullOrWhitespace(After.ToString(), nameof(After));
             if (ExtensionId.IsSpecified)
-                Preconditions.NotNullOrWhitespace(ExtensionId, nameof(ExtensionId));
+                Preconditions.NotNullOrWhitespace(ExtensionId.ToString(), nameof(ExtensionId));
             if (Type.IsSpecified)
                 Preconditions.NotNullOrWhitespace(Type.ToString(), nameof(Type));
         }

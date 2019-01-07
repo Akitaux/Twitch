@@ -11,13 +11,13 @@ namespace Akitaux.Twitch.Helix.Requests
         public const string RequiredScope = "analytics:read:games";
 
         public Optional<int> First { get; set; }
-        public Optional<string> After { get; set; }
-        public Optional<string> GameId { get; set; }
+        public Optional<Utf8String> After { get; set; }
+        public Optional<Utf8String> GameId { get; set; }
         public Optional<AnalyticType> Type { get; set; }
         public Optional<DateTime> StartedAt { get; set; }
         public Optional<DateTime> EndedAt { get; set; }
 
-        public override IDictionary<string, object> GetQueryMap()
+        public override IDictionary<string, object> CreateQueryMap()
         {
             var dict = new Dictionary<string, object>();
             if (First.IsSpecified)
@@ -43,9 +43,9 @@ namespace Akitaux.Twitch.Helix.Requests
                 Preconditions.AtMost(First, 100, nameof(First));
             }
             if (After.IsSpecified)
-                Preconditions.NotNullOrWhitespace(After, nameof(After));
+                Preconditions.NotNullOrWhitespace(After.ToString(), nameof(After));
             if (GameId.IsSpecified)
-                Preconditions.NotNullOrWhitespace(GameId, nameof(GameId));
+                Preconditions.NotNullOrWhitespace(GameId.ToString(), nameof(GameId));
             if (Type.IsSpecified)
                 Preconditions.NotNullOrWhitespace(Type.ToString(), nameof(Type));
         }

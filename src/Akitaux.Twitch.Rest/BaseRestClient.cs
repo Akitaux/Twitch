@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Reflection;
-using Voltaic.Serialization.Json;
 
 namespace Akitaux.Twitch.Rest
 {
@@ -11,11 +10,11 @@ namespace Akitaux.Twitch.Rest
             typeof(BaseRestClient).GetTypeInfo().Assembly.GetName().Version.ToString(3) ??
             "Unknown";
         
-        public JsonSerializer JsonSerializer { get; }
+        public TwitchJsonSerializer JsonSerializer { get; }
         
-        public BaseRestClient(JsonSerializer serializer = null)
+        public BaseRestClient(TwitchJsonSerializer serializer = null)
         {
-            JsonSerializer = serializer ?? new JsonSerializer();
+            JsonSerializer = serializer ?? new TwitchJsonSerializer();
         }
         public virtual void Dispose() { }
     }

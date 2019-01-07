@@ -1,4 +1,5 @@
-﻿using Voltaic.Serialization;
+﻿using Voltaic;
+using Voltaic.Serialization;
 
 namespace Akitaux.Twitch.Helix.Entities
 {
@@ -7,7 +8,7 @@ namespace Akitaux.Twitch.Helix.Entities
         [ModelProperty("user_id")]
         public ulong Id { get; set; }
         [ModelProperty("user_name")]
-        public string Username { get; set; }
+        public Utf8String Username { get; set; }
         [ModelProperty("rank")]
         public int Rank { get; set; }
         [ModelProperty("score")]

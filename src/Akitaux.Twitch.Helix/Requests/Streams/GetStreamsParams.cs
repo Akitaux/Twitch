@@ -1,29 +1,20 @@
 ﻿using System.Collections.Generic;
 using Voltaic;
-using Voltaic.Serialization;
 
 namespace Akitaux.Twitch.Helix.Requests
 {
     public class GetStreamsParams : Rest.QueryMap
     {
-        [ModelProperty("community_id")]
-        public Optional<List<Utf8String>> CommunityIds { get; set; }
-        [ModelProperty("game_id")]
-        public Optional<List<Utf8String>> GameIds { get; set; }
-        [ModelProperty("language")]
-        public Optional<List<Utf8String>> Languages { get; set; }
-        [ModelProperty("user_id")]
-        public Optional<List<ulong>> UserIds { get; set; }
-        [ModelProperty("user_login")]
-        public Optional<List<Utf8String>> UserNames { get; set; }
-        [ModelProperty("first")]
+        public Optional<Utf8String[]> CommunityIds { get; set; }
+        public Optional<ulong[]> GameIds { get; set; }
+        public Optional<Utf8String[]> Languages { get; set; }
+        public Optional<ulong[]> UserIds { get; set; }
+        public Optional<Utf8String[]> UserNames { get; set; }
         public Optional<int> First { get; set; }
-        [ModelProperty("after")]
         public Optional<Utf8String> After { get; set; }
-        [ModelProperty("before")]
         public Optional<Utf8String> Before { get; set; }
 
-        public override IDictionary<string, object> GetQueryMap()
+        public override IDictionary<string, object> CreateQueryMap()
         {
             var dict = new Dictionary<string, object>();
             if (CommunityIds.IsSpecified)

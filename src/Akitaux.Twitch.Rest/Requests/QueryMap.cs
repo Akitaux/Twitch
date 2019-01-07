@@ -4,31 +4,46 @@ using System.Collections.Generic;
 
 namespace Akitaux.Twitch.Rest
 {
-    public abstract class QueryMap : IDictionary<string, string>
+    // TODO: Should this be Utf8String?
+    public abstract class QueryMap : IQueryMap
     {
-        public abstract IDictionary<string, object> GetQueryMap();
+        private IDictionary<string, object> _map = null;
+
+        public abstract IDictionary<string, object> CreateQueryMap();
+        private IDictionary<string, object> Map
+        {
+            get
+            {
+                if (_map == null)
+                    _map = CreateQueryMap();
+                return _map;
+            }
+        }
 
         // IDictionary
-        string IDictionary<string, string>.this[string key] { get => throw new NotSupportedException(); set => throw new NotSupportedException(); }
-        ICollection<string> IDictionary<string, string>.Keys => throw new NotSupportedException();
-        ICollection<string> IDictionary<string, string>.Values => throw new NotSupportedException();
+        object IDictionary<string, object>.this[string key] { get => Map[key]; set => throw new NotSupportedException(); }
+        ICollection<string> IDictionary<string, object>.Keys => Map.Keys;
+        ICollection<object> IDictionary<string, object>.Values => Map.Values;
 
-        void IDictionary<string, string>.Add(string key, string value) => throw new NotSupportedException();
-        bool IDictionary<string, string>.ContainsKey(string key) => throw new NotSupportedException();
-        bool IDictionary<string, string>.Remove(string key) => throw new NotSupportedException();
-        bool IDictionary<string, string>.TryGetValue(string key, out string value) => throw new NotSupportedException();
+        void IDictionary<string, object>.Add(string key, object value) => throw new NotSupportedException();
+        bool IDictionary<string, object>.ContainsKey(string key) => Map.ContainsKey(key);
+        bool IDictionary<string, object>.Remove(string key) => throw new NotSupportedException();
+        bool IDictionary<string, object>.TryGetValue(string key, out object value) => Map.TryGetValue(key, out value);
 
         // ICollection
-        int ICollection<KeyValuePair<string, string>>.Count => throw new NotSupportedException();
-        bool ICollection<KeyValuePair<string, string>>.IsReadOnly => true;
-        void ICollection<KeyValuePair<string, string>>.Add(KeyValuePair<string, string> item) => throw new NotSupportedException();
-        bool ICollection<KeyValuePair<string, string>>.Remove(KeyValuePair<string, string> item) => throw new NotSupportedException();
-        void ICollection<KeyValuePair<string, string>>.Clear() => throw new NotSupportedException();
-        bool ICollection<KeyValuePair<string, string>>.Contains(KeyValuePair<string, string> item) => throw new NotSupportedException();
-        void ICollection<KeyValuePair<string, string>>.CopyTo(KeyValuePair<string, string>[] array, int arrayIndex) => throw new NotSupportedException();
+        int ICollection<KeyValuePair<string, object>>.Count => Map.Count;
+        bool ICollection<KeyValuePair<string, object>>.IsReadOnly => true;
+        void ICollection<KeyValuePair<string, object>>.Add(KeyValuePair<string, object> item) => throw new NotSupportedException();
+        bool ICollection<KeyValuePair<string, object>>.Remove(KeyValuePair<string, object> item) => throw new NotSupportedException();
+        void ICollection<KeyValuePair<string, object>>.Clear() => throw new NotSupportedException();
+        bool ICollection<KeyValuePair<string, object>>.Contains(KeyValuePair<string, object> item) => Map.Contains(item);
+        void ICollection<KeyValuePair<string, object>>.CopyTo(KeyValuePair<string, object>[] array, int arrayIndex) => Map.CopyTo(array, arrayIndex);
 
         // IEnumerable
-        IEnumerator<KeyValuePair<string, string>> IEnumerable<KeyValuePair<string, string>>.GetEnumerator() => throw new NotSupportedException();
-        IEnumerator IEnumerable.GetEnumerator() => throw new NotSupportedException();
+        IEnumerator<KeyValuePair<string, object>> IEnumerable<KeyValuePair<string, object>>.GetEnumerator() => Map.GetEnumerator();
+        IEnumerator IEnumerable.GetEnumerator() => Map.GetEnumerator();
     }
+
+    // Used to hide IDictionary extension methods
+    internal interface IQueryMap : IDictionary<string, object> { }
 }

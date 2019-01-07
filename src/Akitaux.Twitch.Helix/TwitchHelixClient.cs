@@ -6,7 +6,6 @@ using Akitaux.Twitch.Helix.Entities;
 using Akitaux.Twitch.Helix.Requests;
 using Akitaux.Twitch.Rest;
 using RestEase;
-using Voltaic.Serialization.Json;
 
 namespace Akitaux.Twitch.Helix
 {
@@ -16,9 +15,9 @@ namespace Akitaux.Twitch.Helix
         
         public AuthenticationHeaderValue Authorization { get => _api.Authorization; set => _api.Authorization = value; }
 
-        public TwitchHelixClient(JsonSerializer serializer = null, IRateLimiter rateLimiter = null)
+        public TwitchHelixClient(TwitchJsonSerializer serializer = null, IRateLimiter rateLimiter = null)
             : this("https://api.twitch.tv/helix", serializer, rateLimiter) { }
-        public TwitchHelixClient(string url, JsonSerializer serializer = null, IRateLimiter rateLimiter = null)
+        public TwitchHelixClient(string url, TwitchJsonSerializer serializer = null, IRateLimiter rateLimiter = null)
             : base(serializer)
         {
             rateLimiter = rateLimiter ?? new DefaultRateLimiter();
@@ -57,7 +56,6 @@ namespace Akitaux.Twitch.Helix
         {
             return _api.CreateClipAsync(args);
         }
-
         public Task<TwitchResponse<Clip>> GetClipsAsync(GetClipsParams args)
         {
             args.Validate();
@@ -66,7 +64,24 @@ namespace Akitaux.Twitch.Helix
 
         // Entitlements
 
+        public Task<TwitchResponse<GrantsUploadUrl>> CreateGrantsUploadUrlAsync(CreateGrantsUploadUrlParams args)
+        {
+            args.Validate();
+            return _api.CreateGrantsUploadUrlAsync(args);
+        }
+
         // Games
+
+        public Task<TwitchResponse<Game>> GetTopGamesAsync(GetTopGamesParams args = null)
+        {
+            args?.Validate();
+            return _api.GetTopGamesAsync(args);
+        }
+        public Task<TwitchResponse<Game>> GetGamesAsync(GetGamesParams args)
+        {
+            args.Validate();
+            return _api.GetGamesAsync(args);
+        }
 
         // Streams
 
