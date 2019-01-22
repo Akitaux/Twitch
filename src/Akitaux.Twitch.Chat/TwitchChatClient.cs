@@ -4,10 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.WebSockets;
 using System.Reflection;
-using System.Runtime.InteropServices;
 using System.Threading;
 using System.Threading.Tasks;
-using Akitaux.Twitch.Chat.Requests;
 using Voltaic;
 using Voltaic.Serialization;
 using Voltaic.Serialization.Utf8;
@@ -28,11 +26,7 @@ namespace Akitaux.Twitch.Chat
             typeof(TwitchChatClient).GetTypeInfo().Assembly.GetCustomAttribute<AssemblyInformationalVersionAttribute>()?.InformationalVersion ??
             typeof(TwitchChatClient).GetTypeInfo().Assembly.GetName().Version.ToString(3) ??
             "Unknown";
-
-        public const int ReceiveChunkSize = 16 * 1024; //16KB
-        public const int SendChunkSize = 4 * 1024; //4KB
-        private const int HR_TIMEOUT = -2147012894;
-
+        
         // Status events
         public event Action Connected;
         public event Action<Exception> Disconnected;
@@ -41,22 +35,15 @@ namespace Akitaux.Twitch.Chat
         // Raw events
         public event Action<Utf8String> ReceivedPayload;
         public event Action<string> SentPayload;
-
-        private static Utf8String LibraryName { get; } = new Utf8String("Akitaux.Twitch");
-        private static Utf8String OsName { get; } =
-            RuntimeInformation.IsOSPlatform(OSPlatform.Windows) ? new Utf8String("Windows") :
-            RuntimeInformation.IsOSPlatform(OSPlatform.Linux) ? new Utf8String("Linux") :
-            RuntimeInformation.IsOSPlatform(OSPlatform.OSX) ? new Utf8String("OSX") :
-            new Utf8String("Unknown");
-
-        private readonly SemaphoreSlim _stateLock;
-
+        
         // Instance
         private readonly ResizableMemoryStream _memoryStream;
         private Task _connectionTask;
         private CancellationTokenSource _runCts;
         private string _url;
 
+        // Connection
+        private readonly SemaphoreSlim _stateLock;
         private BlockingCollection<string> _sendQueue;
         private bool _receivedData;
 
