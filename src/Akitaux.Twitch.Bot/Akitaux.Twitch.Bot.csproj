@@ -6,6 +6,10 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Akitaux.Twitch.Chat\Akitaux.Twitch.Chat.csproj" />
+    <ProjectReference Include="..\Akitaux.Twitch.Helix\Akitaux.Twitch.Helix.csproj" />
+    <ProjectReference Include="..\Akitaux.Twitch.Identity\Akitaux.Twitch.Identity.csproj" />
+    <ProjectReference Include="..\Akitaux.Twitch.Kraken\Akitaux.Twitch.Kraken.csproj" />
+    <ProjectReference Include="..\Akitaux.Twitch.Pubsub\Akitaux.Twitch.Pubsub.csproj" />
   </ItemGroup>
 
 </Project>
