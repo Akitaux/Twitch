@@ -6,7 +6,6 @@ using Akitaux.Twitch.Identity.Net;
 using Akitaux.Twitch.Identity.Requests;
 using Akitaux.Twitch.Rest;
 using RestEase;
-using Voltaic.Serialization.Json;
 
 namespace Akitaux.Twitch.Identity
 {

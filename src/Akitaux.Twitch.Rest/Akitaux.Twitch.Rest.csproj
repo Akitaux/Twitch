@@ -1,26 +1,12 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Akitaux.Twitch.Core\Akitaux.Twitch.Core.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Reference Include="Voltaic.Core">
-      <HintPath>..\..\extern\Voltaic.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="Voltaic.Serialization">
-      <HintPath>..\..\extern\Voltaic.Serialization.dll</HintPath>
-    </Reference>
-    <Reference Include="Voltaic.Serialization.Json">
-      <HintPath>..\..\extern\Voltaic.Serialization.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="Voltaic.Serialization.Utf8">
-      <HintPath>..\..\extern\Voltaic.Serialization.Utf8.dll</HintPath>
-    </Reference>
   </ItemGroup>
 
 </Project>
