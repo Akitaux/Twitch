@@ -9,8 +9,4 @@
     <ProjectReference Include="..\Akitaux.Twitch.WebSocket\Akitaux.Twitch.WebSocket.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Events\" />
-  </ItemGroup>
-
 </Project>
