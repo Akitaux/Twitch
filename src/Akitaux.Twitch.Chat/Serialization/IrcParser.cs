@@ -88,9 +88,15 @@ namespace Akitaux.Twitch.Chat.Serialization
             while (bytes.Length != 0)
             {
                 int parameterEnd = bytes.IndexOf((byte)' ');
-
+                
+                if (bytes[0] == (byte)':')
+                {
+                    parameterEnd = -1;
+                    bytes = bytes.Slice(1);
+                }
+                
                 ReadOnlySpan<byte> parameterBytes;
-                if (bytes[0] == (byte)':' || parameterEnd == -1)
+                if (parameterEnd == -1)
                 {
                     parameterBytes = bytes.Slice(0, bytes.Length - 2); // Read to end and remove trailing newlines
                     parameterEnd = bytes.Length - 1;
