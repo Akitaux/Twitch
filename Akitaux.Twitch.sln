@@ -23,6 +23,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Akitaux.Twitch.Chat", "src\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Akitaux.Twitch.Pubsub", "src\Akitaux.Twitch.Pubsub\Akitaux.Twitch.Pubsub.csproj", "{FE9941D6-E021-4797-A9FD-F709BB7DADD0}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{0E947EC1-2D72-4BB2-9EBC-87A469A8375F}"
+	ProjectSection(SolutionItems) = preProject
+		appveyor.yml = appveyor.yml
+		LICENSE = LICENSE
+		nuget.config = nuget.config
+		README.md = README.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -61,10 +69,6 @@ Global
 		{FE9941D6-E021-4797-A9FD-F709BB7DADD0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FE9941D6-E021-4797-A9FD-F709BB7DADD0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FE9941D6-E021-4797-A9FD-F709BB7DADD0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B2D105EF-577E-4EB0-B4F9-862C3A4A1599}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B2D105EF-577E-4EB0-B4F9-862C3A4A1599}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B2D105EF-577E-4EB0-B4F9-862C3A4A1599}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B2D105EF-577E-4EB0-B4F9-862C3A4A1599}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
