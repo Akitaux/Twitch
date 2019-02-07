@@ -104,6 +104,18 @@ namespace Akitaux.Twitch.Helix
             return _api.GetStreamsAsync(args);
         }
 
+        public Task<TwitchResponse<StreamMarker>> CreateStreamMarkerAsync(CreateStreamMarkerParams args)
+        {
+            args.Validate();
+            return _api.CreateStreamMarkerAsync(args);
+        }
+
+        public Task<TwitchResponse<Stream>> GetStreamMarkersAsync(GetStreamMarkersParams args)
+        {
+            args.Validate();
+            return _api.GetStreamMarkersAsync(args);
+        }
+
         // Users
 
         // Videos
