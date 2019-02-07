@@ -1,0 +1,45 @@
+version: build-{build}
+branches:
+  only:
+  - master
+image: Visual Studio 2017
+
+nuget:
+  disable_publish_on_pr: true
+pull_requests:
+  do_not_increment_build_number: true
+clone_folder: C:\Twitch
+
+environment:
+  DOTNET_CLI_TELEMETRY_OPTOUT: 1
+init:
+- ps: $Env:BUILD = "$($Env:APPVEYOR_BUILD_NUMBER.PadLeft(5, "0"))"
+
+build_script:
+- ps: appveyor-retry dotnet restore Akitaux.Twitch.sln -v Minimal /p:BuildNumber="$Env:BUILD" /p:IsTagBuild="$Env:APPVEYOR_REPO_TAG"
+- ps: dotnet build Akitaux.Twitch.sln -c "Release" /p:BuildNumber="$Env:BUILD" /p:IsTagBuild="$Env:APPVEYOR_REPO_TAG"
+
+after_build:
+- ps: dotnet pack "src\Wumpus.Net.Core\Akitaux.Twitch.Core.csproj" -c "Release" -o "../../artifacts" --no-build /p:BuildNumber="$Env:BUILD" /p:IsTagBuild="$Env:APPVEYOR_REPO_TAG"
+- ps: dotnet pack "src\Wumpus.Net.Core\Akitaux.Twitch.Rest.csproj" -c "Release" -o "../../artifacts" --no-build /p:BuildNumber="$Env:BUILD" /p:IsTagBuild="$Env:APPVEYOR_REPO_TAG"
+- ps: dotnet pack "src\Wumpus.Net.Core\Akitaux.Twitch.Helix.csproj" -c "Release" -o "../../artifacts" --no-build /p:BuildNumber="$Env:BUILD" /p:IsTagBuild="$Env:APPVEYOR_REPO_TAG"
+- ps: dotnet pack "src\Wumpus.Net.Core\Akitaux.Twitch.Identity.csproj" -c "Release" -o "../../artifacts" --no-build /p:BuildNumber="$Env:BUILD" /p:IsTagBuild="$Env:APPVEYOR_REPO_TAG"
+- ps: dotnet pack "src\Wumpus.Net.Core\Akitaux.Twitch.Chat.csproj" -c "Release" -o "../../artifacts" --no-build /p:BuildNumber="$Env:BUILD" /p:IsTagBuild="$Env:APPVEYOR_REPO_TAG"
+- ps: dotnet pack "src\Wumpus.Net.Core\Akitaux.Twitch.WebSocket.csproj" -c "Release" -o "../../artifacts" --no-build /p:BuildNumber="$Env:BUILD" /p:IsTagBuild="$Env:APPVEYOR_REPO_TAG"
+- ps: Get-ChildItem artifacts\*.nupkg | % { Push-AppveyorArtifact $_.FullName -FileName $_.Name }
+
+deploy:
+- provider: NuGet
+  server: https://www.myget.org/F/akitaux/api/v2/package
+  api_key:
+    secure: 0/P5wqPax6Fnvbq2i6OfzZPJNk4r2NN3vy6b3m0LSyCHj7ob+3nHNctNIBljlmwH
+  symbol_server: https://www.myget.org/F/akitaux/api/v2/package
+  on:
+    branch: master
+- provider: NuGet
+  server: https://www.myget.org/F/aux/api/v2/package
+  api_key:
+    secure: 5aRPBaPGNF4R7W+7H5SR5aYYZfor0JlmJvi2GHq0cOU2ZQgz4cz/s0YG4ofF4ItV
+  symbol_server: https://www.myget.org/F/aux/symbols/api/v2/package
+  on:
+    branch: master
