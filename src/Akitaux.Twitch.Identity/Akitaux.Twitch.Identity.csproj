@@ -1,12 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
+  <Import Project="../Twitch.targets" />
   <PropertyGroup>
+    <Description>Provides a low-level rest client for the Twitch Identity API</Description>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <LangVersion>latest</LangVersion>
   </PropertyGroup>
-
   <ItemGroup>
     <ProjectReference Include="..\Akitaux.Twitch.Rest\Akitaux.Twitch.Rest.csproj" />
   </ItemGroup>
-
 </Project>

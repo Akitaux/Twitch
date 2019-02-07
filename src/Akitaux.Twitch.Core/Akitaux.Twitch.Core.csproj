@@ -1,14 +1,11 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
+  <Import Project="../Twitch.targets" />
   <PropertyGroup>
+    <Description>Shared types and models across all Akitaux.Twitch projects</Description>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <RootNamespace>Akitaux.Twitch</RootNamespace>
-    <LangVersion>latest</LangVersion>
   </PropertyGroup>
-
   <ItemGroup>
     <PackageReference Include="RestEase" Version="1.4.5" />
     <PackageReference Include="Voltaic.Serialization.Json" Version="0.2.1-build-00011" />
   </ItemGroup>
-
 </Project>

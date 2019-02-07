@@ -1,12 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
+  <Import Project="../Twitch.targets" />
   <PropertyGroup>
+    <Description>Shared types and models across all Akitaux.Twitch projects that implement websocket</Description>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <LangVersion>latest</LangVersion>
   </PropertyGroup>
-
   <ItemGroup>
     <ProjectReference Include="..\Akitaux.Twitch.Core\Akitaux.Twitch.Core.csproj" />
   </ItemGroup>
-
 </Project>

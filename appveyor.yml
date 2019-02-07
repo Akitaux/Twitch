@@ -32,14 +32,7 @@ deploy:
 - provider: NuGet
   server: https://www.myget.org/F/akitaux/api/v2/package
   api_key:
-    secure: 0/P5wqPax6Fnvbq2i6OfzZPJNk4r2NN3vy6b3m0LSyCHj7ob+3nHNctNIBljlmwH
-  symbol_server: https://www.myget.org/F/akitaux/api/v2/package
-  on:
-    branch: master
-- provider: NuGet
-  server: https://www.myget.org/F/aux/api/v2/package
-  api_key:
     secure: 5aRPBaPGNF4R7W+7H5SR5aYYZfor0JlmJvi2GHq0cOU2ZQgz4cz/s0YG4ofF4ItV
-  symbol_server: https://www.myget.org/F/aux/symbols/api/v2/package
+  symbol_server: https://www.myget.org/F/akitaux/api/v2/package
   on:
     branch: master
