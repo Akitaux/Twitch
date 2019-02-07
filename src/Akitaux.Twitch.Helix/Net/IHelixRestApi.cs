@@ -11,6 +11,8 @@ namespace Akitaux.Twitch.Helix
     {
         [Header("Authorization")]
         AuthenticationHeaderValue Authorization { get; set; }
+        [Header("Client-ID")]
+        NameValueHeaderValue ClientId { get; set; }
 
         // Analytics
         [Get("analytics/extensions")]
@@ -31,11 +33,10 @@ namespace Akitaux.Twitch.Helix
         // Entitlements
         [Get("entitlements/upload")]
         Task<TwitchResponse<GrantsUploadUrl>> CreateGrantsUploadUrlAsync([QueryMap]CreateGrantsUploadUrlParams args);
-        // Todo, they changed the response structure for these two requests for absolutely no reason
-        //[Get("entitlements/code")]
-        //Task<TwitchResponse<object>> GetCodeStatusAsync([QueryMap]object args = null);
-        //[Post("entitlements/code")]
-        //Task<TwitchResponse<object>> GetCodeStatusAsync([QueryMap]object args = null);
+        [Get("entitlements/code")]
+        Task<EntitlementsResponse<EntitlementCodeStatus>> GetCodeStatusAsync([QueryMap]CodeStatusParams args);
+        [Post("entitlements/code")]
+        Task<EntitlementsResponse<EntitlementCodeStatus>> RedeemCodeAsync([QueryMap]CodeStatusParams args);
 
         // Games
         [Get("games/top")]
@@ -46,6 +47,10 @@ namespace Akitaux.Twitch.Helix
         // Streams
         [Get("streams")]
         Task<TwitchResponse<Stream>> GetStreamsAsync([QueryMap]GetStreamsParams args = null);
+        //[Get("streams/metadata")]
+        //Task<TwitchResponse<StreamMetadata>> GetStreamMetadatasAsync([QueryMap]GetStreamMetadatasParams args = null);
+
+
 
         // Users
 

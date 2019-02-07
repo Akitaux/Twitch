@@ -14,6 +14,7 @@ namespace Akitaux.Twitch.Helix
         private readonly IHelixRestApi _api;
         
         public AuthenticationHeaderValue Authorization { get => _api.Authorization; set => _api.Authorization = value; }
+        public NameValueHeaderValue ClientId { get => _api.ClientId; set => _api.ClientId = value; }
 
         public TwitchHelixClient(TwitchJsonSerializer serializer = null, IRateLimiter rateLimiter = null)
             : this("https://api.twitch.tv/helix", serializer, rateLimiter) { }
@@ -70,6 +71,18 @@ namespace Akitaux.Twitch.Helix
             return _api.CreateGrantsUploadUrlAsync(args);
         }
 
+        public Task<EntitlementsResponse<EntitlementCodeStatus>> GetCodeStatusAsync(CodeStatusParams args)
+        {
+            args.Validate();
+            return _api.GetCodeStatusAsync(args);
+        }
+
+        public Task<EntitlementsResponse<EntitlementCodeStatus>> RedeemCodeAsync(CodeStatusParams args)
+        {
+            args.Validate();
+            return _api.RedeemCodeAsync(args);
+        }
+        
         // Games
 
         public Task<TwitchResponse<Game>> GetTopGamesAsync(GetTopGamesParams args = null)
