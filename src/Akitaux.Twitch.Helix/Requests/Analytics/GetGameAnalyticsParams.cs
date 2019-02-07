@@ -8,7 +8,7 @@ namespace Akitaux.Twitch.Helix.Requests
 {
     public class GetGameAnalyticsParams : Rest.QueryMap
     {
-        public const string RequiredScope = "analytics:read:games";
+        public static readonly string[] RequiredScopes = { "analytics:read:games" };
 
         public Optional<int> First { get; set; }
         public Optional<Utf8String> After { get; set; }

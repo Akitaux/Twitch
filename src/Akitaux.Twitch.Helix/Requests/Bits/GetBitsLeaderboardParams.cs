@@ -8,7 +8,7 @@ namespace Akitaux.Twitch.Helix.Requests
 {
     public class GetBitsLeaderboardParams : Rest.QueryMap
     {
-        public const string RequiredScope = "bits:read";
+        public static readonly string[] RequiredScopes = { "bits:read" };
 
         public Optional<int> Count { get; set; }
         public Optional<BitsPeriod> Period { get; set; }

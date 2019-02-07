@@ -5,7 +5,7 @@ namespace Akitaux.Twitch.Helix.Requests
 {
     public class CreateClipParams : Rest.QueryMap
     {
-        public const string RequiredScope = "bits:read";
+        public static readonly string[] RequiredScopes = { "bits:read" };
 
         public ulong BroadcasterId { get; set; }
         public Optional<bool> HasDelay { get; set; }

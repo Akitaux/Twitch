@@ -35,6 +35,5 @@ namespace Akitaux.Twitch.Helix.Requests
                 Preconditions.CountLessThan(Names, 1, nameof(Names));
             }
         }
-
     }
 }

@@ -9,7 +9,7 @@ namespace Akitaux.Twitch.Helix.Requests
 {
     public class GetExtensionAnalyticsParams : QueryMap
     {
-        public const string RequiredScope = "analytics:read:extensions";
+        public static readonly string[] RequiredScopes = { "analytics:read:extensions" };
 
         public Optional<int> First { get; set; }
         public Optional<Utf8String> After { get; set; }
