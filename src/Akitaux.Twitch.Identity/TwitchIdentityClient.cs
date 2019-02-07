@@ -2,7 +2,7 @@
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
-using Akitaux.Twitch.Identity.Net;
+using Akitaux.Twitch.Identity.Entities;
 using Akitaux.Twitch.Identity.Requests;
 using Akitaux.Twitch.Rest;
 using RestEase;
@@ -27,34 +27,27 @@ namespace Akitaux.Twitch.Identity
         }
         public override void Dispose() => _api.Dispose();
 
-        public Task<object> AuthorizeAsync([QueryMap] AuthorizationParams args)
+        public Task<AuthorizationInfo> ValidateAsync()
         {
-            throw new NotImplementedException();
+            return _api.ValidateAsync();
         }
 
-        public Task<object> ValidateAsync()
+        public Task AuthorizeAsync(AuthorizationParams args)
         {
-            throw new NotImplementedException();
+            args.Validate();
+            return _api.AuthorizeAsync(args);
         }
 
-        public Task<object> RevokeTokenAsync(string clientId, string token)
+        public Task<TokenInfo> RefreshTokenAsync(RefreshParams args)
         {
-            throw new NotImplementedException();
+            args.Validate();
+            return _api.RefreshTokenAsync(args);
         }
 
-        public Task<object> GetUserInfoAsync()
+        public Task RevokeTokenAsync(RevokeParams args)
         {
-            throw new NotImplementedException();
-        }
-
-        public Task<object> GetKeysAsync()
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<object> GetOpenIdConfigurationAsync()
-        {
-            throw new NotImplementedException();
+            args.Validate();
+            return _api.RevokeTokenAsync(args);
         }
     }
 }
