@@ -41,7 +41,6 @@ namespace Akitaux.Twitch.Chat
         public event Action Heartbeat;
         public event Action HeartbeatAck;
         public event Action Reconnect;
-        public event Action<IrcMessage> MessageReceived;
 
         // Instance
         private readonly ResizableMemoryStream _memoryStream;
@@ -259,7 +258,6 @@ namespace Akitaux.Twitch.Chat
                     Heartbeat?.Invoke();
                     break;
                 case IrcCommand.Pong: HeartbeatAck?.Invoke(); break;
-                case IrcCommand.Message: MessageReceived?.Invoke(evnt); break;
             }
         }
 

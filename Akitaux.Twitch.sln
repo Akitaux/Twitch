@@ -23,8 +23,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Akitaux.Twitch.Chat", "src\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Akitaux.Twitch.Pubsub", "src\Akitaux.Twitch.Pubsub\Akitaux.Twitch.Pubsub.csproj", "{FE9941D6-E021-4797-A9FD-F709BB7DADD0}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Akitaux.Twitch.Bot", "src\Akitaux.Twitch.Bot\Akitaux.Twitch.Bot.csproj", "{609D5720-6275-4878-A1B1-6C2EC911F45B}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,10 +61,10 @@ Global
 		{FE9941D6-E021-4797-A9FD-F709BB7DADD0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FE9941D6-E021-4797-A9FD-F709BB7DADD0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FE9941D6-E021-4797-A9FD-F709BB7DADD0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{609D5720-6275-4878-A1B1-6C2EC911F45B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{609D5720-6275-4878-A1B1-6C2EC911F45B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{609D5720-6275-4878-A1B1-6C2EC911F45B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{609D5720-6275-4878-A1B1-6C2EC911F45B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B2D105EF-577E-4EB0-B4F9-862C3A4A1599}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2D105EF-577E-4EB0-B4F9-862C3A4A1599}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2D105EF-577E-4EB0-B4F9-862C3A4A1599}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2D105EF-577E-4EB0-B4F9-862C3A4A1599}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -79,7 +77,6 @@ Global
 		{E848E85E-97E1-4816-81FC-BB95E1398438} = {DDC6DF09-A774-4433-BDC0-2B05B347156E}
 		{42489D77-4057-4116-A949-B94FE184922C} = {DDC6DF09-A774-4433-BDC0-2B05B347156E}
 		{FE9941D6-E021-4797-A9FD-F709BB7DADD0} = {DDC6DF09-A774-4433-BDC0-2B05B347156E}
-		{609D5720-6275-4878-A1B1-6C2EC911F45B} = {DDC6DF09-A774-4433-BDC0-2B05B347156E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {58650AD6-9301-4AEC-BE85-86D6FEC38424}
