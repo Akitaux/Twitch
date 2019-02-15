@@ -53,9 +53,16 @@ namespace Akitaux.Twitch.Helix
         Task<TwitchResponse<StreamMarker>> CreateStreamMarkerAsync([Body]CreateStreamMarkerParams args);
         [Get("streams/markers")]
         Task<TwitchResponse<Stream>> GetStreamMarkersAsync([QueryMap]GetStreamMarkersParams args);
-        
+
+        // Subscriptions
+
+        // Tags
+
         // Users
 
         // Videos
+
+        // Webhooks
+
     }
 }

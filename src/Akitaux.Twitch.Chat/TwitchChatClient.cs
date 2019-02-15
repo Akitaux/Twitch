@@ -40,7 +40,6 @@ namespace Akitaux.Twitch.Chat
         // Events
         public event Action Heartbeat;
         public event Action HeartbeatAck;
-        public event Action Reconnect;
 
         // Instance
         private readonly ResizableMemoryStream _memoryStream;
@@ -51,7 +50,6 @@ namespace Akitaux.Twitch.Chat
         // Connection
         private readonly SemaphoreSlim _stateLock;
         private BlockingCollection<IrcMessage> _sendQueue;
-        private bool _receivedData;
 
         public ConnectionState State { get; private set; }
         public Utf8Serializer Serializer { get; }
@@ -104,7 +102,6 @@ namespace Akitaux.Twitch.Chat
                     try
                     {
                         cancelToken.ThrowIfCancellationRequested();
-                        _receivedData = true;
 
                         State = ConnectionState.Connecting;
                         var uri = new Uri(_url);
@@ -236,7 +233,6 @@ namespace Akitaux.Twitch.Chat
                 var buffer = _memoryStream.Buffer.RequestSegment(10 * 1024);
                 result = await client.ReceiveAsync(buffer, cancelToken).ConfigureAwait(false);
                 _memoryStream.Buffer.Advance(result.Count);
-                _receivedData = true;
 
                 if (result.CloseStatus != null)
                     throw new WebSocketClosedException(result.CloseStatus.Value, result.CloseStatusDescription);

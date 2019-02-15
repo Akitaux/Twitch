@@ -116,11 +116,15 @@ namespace Akitaux.Twitch.Helix
             return _api.GetStreamMarkersAsync(args);
         }
 
+        // Subscriptions
+
+        // Tags
+        
         // Users
 
         // Videos
 
-
-
+        // Webhooks
+        
     }
 }
