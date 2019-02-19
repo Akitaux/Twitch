@@ -60,7 +60,11 @@ namespace Akitaux.Twitch.Helix
 
         // Tags
         [Get("tags/streams")]
-        Task<TwitchResponse<object>> GetTagsAsync([QueryMap]object args);
+        Task<TwitchResponse<Tag>> GetTagsAsync([QueryMap]GetTagsParams args);
+        [Get("streams/tags")]
+        Task<TwitchResponse<Tag>> GetStreamTagsAsync([Query]ulong broadcasterId);
+        [Put("streams/tags")]
+        Task<TwitchResponse<Tag>> PutStreamTagsAsync([Query]ulong broadcasterId, [Body]params Voltaic.Utf8String[] tagIds);
 
         // Users
 

@@ -7,6 +7,7 @@ using Akitaux.Twitch.Helix.Entities;
 using Akitaux.Twitch.Helix.Requests;
 using Akitaux.Twitch.Rest;
 using RestEase;
+using Voltaic;
 
 namespace Akitaux.Twitch.Helix
 {
@@ -133,6 +134,22 @@ namespace Akitaux.Twitch.Helix
         }
 
         // Tags
+
+        public Task<TwitchResponse<Tag>> GetTagsAsync(GetTagsParams args)
+        {
+            args.Validate();
+            return _api.GetTagsAsync(args);
+        }
+
+        public Task<TwitchResponse<Tag>> GetStreamTagsAsync(ulong broadcasterId)
+        {
+            return _api.GetStreamTagsAsync(broadcasterId);
+        }
+
+        public Task<TwitchResponse<Tag>> PutStreamTagsAsync(ulong broadcasterId, params Utf8String[] tagIds)
+        {
+            return _api.PutStreamTagsAsync(broadcasterId, tagIds);
+        }
 
         // Users
 
