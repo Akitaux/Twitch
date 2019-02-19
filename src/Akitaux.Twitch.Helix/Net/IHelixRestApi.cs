@@ -55,8 +55,12 @@ namespace Akitaux.Twitch.Helix
         Task<TwitchResponse<Stream>> GetStreamMarkersAsync([QueryMap]GetStreamMarkersParams args);
 
         // Subscriptions
+        [Get("subscriptions")]
+        Task<TwitchResponse<Subscription>> GetSubscriptionsAsync([QueryMap]GetSubscriptionsParams args);
 
         // Tags
+        [Get("tags/streams")]
+        Task<TwitchResponse<object>> GetTagsAsync([QueryMap]object args);
 
         // Users
 

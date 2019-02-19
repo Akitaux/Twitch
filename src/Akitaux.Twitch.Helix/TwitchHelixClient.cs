@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Reflection;
 using System.Threading.Tasks;
 using Akitaux.Twitch.Helix.Entities;
 using Akitaux.Twitch.Helix.Requests;
@@ -9,18 +10,25 @@ using RestEase;
 
 namespace Akitaux.Twitch.Helix
 {
-    public class TwitchHelixClient : BaseRestClient, IHelixRestApi, IDisposable
+    public class TwitchHelixClient : IHelixRestApi, IDisposable
     {
+        public static string Version { get; } =
+            typeof(TwitchHelixClient).GetTypeInfo().Assembly.GetCustomAttribute<AssemblyInformationalVersionAttribute>()?.InformationalVersion ??
+            typeof(TwitchHelixClient).GetTypeInfo().Assembly.GetName().Version.ToString(3) ??
+            "Unknown";
+
         private readonly IHelixRestApi _api;
         
         public AuthenticationHeaderValue Authorization { get => _api.Authorization; set => _api.Authorization = value; }
         public NameValueHeaderValue ClientId { get => _api.ClientId; set => _api.ClientId = value; }
 
+        public TwitchJsonSerializer JsonSerializer { get; }
+
         public TwitchHelixClient(TwitchJsonSerializer serializer = null, IRateLimiter rateLimiter = null)
             : this("https://api.twitch.tv/helix", serializer, rateLimiter) { }
         public TwitchHelixClient(string url, TwitchJsonSerializer serializer = null, IRateLimiter rateLimiter = null)
-            : base(serializer)
         {
+            JsonSerializer = serializer ?? new TwitchJsonSerializer();
             rateLimiter = rateLimiter ?? new DefaultRateLimiter();
 
             var httpClient = new HttpClient { BaseAddress = new Uri(url) };
@@ -28,8 +36,8 @@ namespace Akitaux.Twitch.Helix
 
             _api = RestClient.For<IHelixRestApi>(new WumpusRequester(httpClient, JsonSerializer, rateLimiter));
         }
-        public override void Dispose() => _api.Dispose();
-        
+        public virtual void Dispose() => _api.Dispose();
+
         //  Analytics
 
         public Task<TwitchResponse<ExtensionAnalyticReport>> GetExtensionAnalyticsAsync(GetExtensionAnalyticsParams args)
@@ -118,13 +126,19 @@ namespace Akitaux.Twitch.Helix
 
         // Subscriptions
 
+        public Task<TwitchResponse<Subscription>> GetSubscriptionsAsync(GetSubscriptionsParams args)
+        {
+            args.Validate();
+            return _api.GetSubscriptionsAsync(args);
+        }
+
         // Tags
-        
+
         // Users
 
         // Videos
 
         // Webhooks
-        
+
     }
 }
