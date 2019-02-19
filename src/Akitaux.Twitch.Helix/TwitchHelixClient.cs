@@ -153,6 +153,38 @@ namespace Akitaux.Twitch.Helix
 
         // Users
 
+        public Task<TwitchResponse<User>> GetUsersAsync(GetUsersParams args)
+        {
+            args.Validate();
+            return _api.GetUsersAsync(args);
+        }
+
+        public Task<TwitchResponse<User>> PutUserAsync(Utf8String description)
+        {
+            return _api.PutUserAsync(description);
+        }
+
+        public Task<TwitchResponse<Follow>> GetFollowsAsync(GetFollowsParams args)
+        {
+            args.Validate();
+            return _api.GetFollowsAsync(args);
+        }
+
+        public Task<TwitchResponse<Extension>> GetMyExtensionsAsync()
+        {
+            return _api.GetMyExtensionsAsync();
+        }
+
+        public Task<TwitchResponse<ExtensionLocation>> GetUserActiveExtensionsAsync(ulong userId)
+        {
+            return _api.GetUserActiveExtensionsAsync(userId);
+        }
+
+        public Task<TwitchResponse<ExtensionLocation>> PutUserExtensionsAsync()
+        {
+            return _api.PutUserExtensionsAsync();
+        }
+
         // Videos
 
         // Webhooks

@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Akitaux.Twitch.Helix.Entities;
 using Akitaux.Twitch.Helix.Requests;
 using RestEase;
+using Voltaic;
 
 namespace Akitaux.Twitch.Helix
 {
@@ -67,6 +68,18 @@ namespace Akitaux.Twitch.Helix
         Task<TwitchResponse<Tag>> PutStreamTagsAsync([Query]ulong broadcasterId, [Body]params Voltaic.Utf8String[] tagIds);
 
         // Users
+        [Get("users")]
+        Task<TwitchResponse<User>> GetUsersAsync([QueryMap]GetUsersParams args);
+        [Put("users")]
+        Task<TwitchResponse<User>> PutUserAsync([Query]Utf8String description);
+        [Get("users/follows")]
+        Task<TwitchResponse<Follow>> GetFollowsAsync([QueryMap]GetFollowsParams args);
+        [Get("users/extensions/list")]
+        Task<TwitchResponse<Extension>> GetMyExtensionsAsync();
+        [Get("users/extensions")]
+        Task<TwitchResponse<ExtensionLocation>> GetUserActiveExtensionsAsync([Query]ulong userId);
+        [Put("users/extensions")]
+        Task<TwitchResponse<ExtensionLocation>> PutUserExtensionsAsync();
 
         // Videos
 
