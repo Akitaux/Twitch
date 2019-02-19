@@ -3,6 +3,7 @@
   <PropertyGroup>
     <Description>Provides a low-level rest client for the Twitch Kraken API</Description>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <RootNamespace>Akitaux.Twitch.Kraken</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\Akitaux.Twitch.Rest\Akitaux.Twitch.Rest.csproj" />

@@ -8,7 +8,6 @@ namespace Akitaux.Twitch.Rest
     public class DefaultRateLimiter : IRateLimiter
     {
         private readonly ConcurrentDictionary<string, RequestBucket> _buckets;
-        private DateTimeOffset _globalWaitUntil;
 
         public DefaultRateLimiter()
         {
@@ -25,7 +24,7 @@ namespace Akitaux.Twitch.Rest
         {
             while (true)
             {
-                int millis = (int)Math.Ceiling((_globalWaitUntil - DateTimeOffset.UtcNow).TotalMilliseconds);
+                int millis = (int)Math.Ceiling(a: DateTimeOffset.UtcNow.Ticks);
                 if (millis <= 0)
                     break;
                 else
@@ -34,7 +33,6 @@ namespace Akitaux.Twitch.Rest
         }
         public virtual async Task EnterBucketLockAsync(string bucketId, CancellationToken cancelToken)
         {
-            // TODO: We should clean up old buckets
             var bucket = _buckets.GetOrAdd(bucketId, x => new RequestBucket(this));
             await bucket.EnterAsync(cancelToken);
         }
