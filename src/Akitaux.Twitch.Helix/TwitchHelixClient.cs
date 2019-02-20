@@ -195,5 +195,16 @@ namespace Akitaux.Twitch.Helix
 
         // Webhooks
 
+        public Task<TwitchResponse<WebhookSubscription>> GetWebhookSubscriptionsAsync(GetWebhookSubscriptionsAsync args)
+        {
+            args.Validate();
+            return _api.GetWebhookSubscriptionsAsync(args);
+        }
+
+        public Task PostWebhookAsync(PostWebhookParams args)
+        {
+            args.Validate();
+            return _api.PostWebhookAsync(args);
+        }
     }
 }

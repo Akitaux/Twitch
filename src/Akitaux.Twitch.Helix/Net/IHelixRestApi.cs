@@ -86,6 +86,11 @@ namespace Akitaux.Twitch.Helix
         Task<TwitchResponse<Video>> GetVideosAsync([QueryMap]GetVideoParams args);
 
         // Webhooks
+        [Get("webhooks/subscriptions")]
+        Task<TwitchResponse<WebhookSubscription>> GetWebhookSubscriptionsAsync([QueryMap]GetWebhookSubscriptionsAsync args);
+        [Post("webhooks/hub")]
+        Task PostWebhookAsync([Body]PostWebhookParams args);
+
 
     }
 }
