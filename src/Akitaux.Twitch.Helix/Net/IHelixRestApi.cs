@@ -82,6 +82,8 @@ namespace Akitaux.Twitch.Helix
         Task<TwitchResponse<ExtensionLocation>> PutUserExtensionsAsync();
 
         // Videos
+        [Get("videos")]
+        Task<TwitchResponse<Video>> GetVideosAsync([QueryMap]GetVideoParams args);
 
         // Webhooks
 

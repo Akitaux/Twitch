@@ -187,6 +187,12 @@ namespace Akitaux.Twitch.Helix
 
         // Videos
 
+        public Task<TwitchResponse<Video>> GetVideosAsync(GetVideoParams args)
+        {
+            args.Validate();
+            return _api.GetVideosAsync(args);
+        }
+
         // Webhooks
 
     }
