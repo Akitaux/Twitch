@@ -4,7 +4,7 @@ namespace Akitaux.Twitch.Helix.Entities
 {
     public enum VideoPeriod
     {
-        [ModelEnumValue("all")]
+        [ModelEnumValue("all", type: EnumValueType.ReadOnly)]
         All,
         [ModelEnumValue("day")]
         Day,

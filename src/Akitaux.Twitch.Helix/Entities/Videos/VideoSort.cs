@@ -4,7 +4,7 @@ namespace Akitaux.Twitch.Helix.Entities
 {
     public enum VideoSort
     {
-        [ModelEnumValue("time")]
+        [ModelEnumValue("time", type: EnumValueType.ReadOnly)]
         Time,
         [ModelEnumValue("trending")]
         Trending,
