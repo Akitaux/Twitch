@@ -4,34 +4,42 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.WebSockets;
 using System.Reflection;
+using System.Runtime.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
-using Akitaux.Twitch.Chat.Serialization;
+using Akitaux.Twitch.Pubsub.Events;
 using Voltaic;
-using Voltaic.Serialization;
-using Voltaic.Serialization.Utf8;
 
-namespace Akitaux.Twitch.Chat
+namespace Akitaux.Twitch.Pubsub
 {
-    public class TwitchChatClient : IDisposable
+    public class TwitchPubsubClient
     {
         public static string Version { get; } =
-            typeof(TwitchChatClient).GetTypeInfo().Assembly.GetCustomAttribute<AssemblyInformationalVersionAttribute>()?.InformationalVersion ??
-            typeof(TwitchChatClient).GetTypeInfo().Assembly.GetName().Version.ToString(3) ??
+            typeof(TwitchPubsubClient).GetTypeInfo().Assembly.GetCustomAttribute<AssemblyInformationalVersionAttribute>()?.InformationalVersion ??
+            typeof(TwitchPubsubClient).GetTypeInfo().Assembly.GetName().Version.ToString(3) ??
             "Unknown";
-        
+
         // Status events
         public event Action Connected;
         public event Action<Exception> Disconnected;
         public event Action<SerializationException> DeserializationError;
 
         // Raw events
-        public event Action<IrcMessage, int> ReceivedPayload;
-        public event Action<IrcMessage> SentPayload;
+        public event Action<PubsubPayload, int> ReceivedPayload;
+        public event Action<PubsubPayload> SentPayload;
 
-        // Events
+        // Operation Events
         public event Action Heartbeat;
         public event Action HeartbeatAck;
+        public event Action Reconnect;
+
+        // Dispatch events
+        public event Action<EventData<BitsEvent>> BitsV1;
+        public event Action<EventData<BitsEvent>> BitsV2;
+        public event Action<BitsBadgeEvent> BitsBadgeUnlock;
+        public event Action<ChannelSubscribeEvent> ChannelSubscriptionV1;
+        public event Action<CommerceEvent> CommerceV1;
+        public event Action<WhisperEvent> Whisper;
 
         // Instance
         private readonly ResizableMemoryStream _memoryStream;
@@ -41,21 +49,21 @@ namespace Akitaux.Twitch.Chat
 
         // Connection
         private readonly SemaphoreSlim _stateLock;
-        private BlockingCollection<IrcMessage> _sendQueue;
+        private BlockingCollection<PubsubPayload> _sendQueue;
 
         public ConnectionState State { get; private set; }
-        public Utf8Serializer Serializer { get; }
+        public TwitchJsonSerializer Serializer { get; }
 
-        public TwitchChatClient(Utf8Serializer serializer = null)
+        public TwitchPubsubClient(TwitchJsonSerializer serializer = null)
         {
-            Serializer = serializer ?? new Utf8Serializer();
+            Serializer = serializer ?? new TwitchJsonSerializer();
             _memoryStream = new ResizableMemoryStream(10 * 1024); // 10 KB
             _stateLock = new SemaphoreSlim(1, 1);
             _connectionTask = Task.CompletedTask;
             _runCts = new CancellationTokenSource();
             _runCts.Cancel(); // Start canceled
         }
-        
+
         public void Run(string url)
             => RunAsync(url).ConfigureAwait(false).GetAwaiter().GetResult();
         public async Task RunAsync(string url)
@@ -99,7 +107,7 @@ namespace Akitaux.Twitch.Chat
                         var uri = new Uri(_url);
                         await client.ConnectAsync(uri, cancelToken).ConfigureAwait(false);
 
-                        _sendQueue = new BlockingCollection<IrcMessage>();
+                        _sendQueue = new BlockingCollection<PubsubPayload>();
                         tasks = new[]
                         {
                             RunSendAsync(client, cancelToken),
@@ -194,7 +202,7 @@ namespace Akitaux.Twitch.Chat
                 return IsRecoverable(ex.InnerException);
             return false;
         }
-        
+
         private Task RunReceiveAsync(ClientWebSocket client, CancellationToken cancelToken)
         {
             return Task.Run(async () =>
@@ -213,7 +221,7 @@ namespace Akitaux.Twitch.Chat
                 }
             });
         }
-        private async Task<IrcMessage> ReceiveAsync(ClientWebSocket client, CancellationToken cancelToken)
+        private async Task<PubsubPayload> ReceiveAsync(ClientWebSocket client, CancellationToken cancelToken)
         {
             // Reset memory stream
             _memoryStream.Position = 0;
@@ -231,21 +239,59 @@ namespace Akitaux.Twitch.Chat
             }
             while (!result.EndOfMessage);
 
-            var payload = IrcParser.Read(_memoryStream.Buffer.AsReadOnlySpan(), Serializer);
+            var payload = Serializer.Read<PubsubPayload>(_memoryStream.Buffer.AsReadOnlySpan());
 
             HandleEvent(payload);
             ReceivedPayload?.Invoke(payload, _memoryStream.Buffer.Length);
             return payload;
         }
-        private void HandleEvent(IrcMessage evnt)
+        private void HandleEvent(PubsubPayload evnt)
         {
-            switch (evnt.Command)
+            switch (evnt.Operation)
             {
-                case IrcCommand.Ping:
+                case PubsubOperation.Ping:
                     SendHeartbeatAck();
                     Heartbeat?.Invoke();
                     break;
-                case IrcCommand.Pong: HeartbeatAck?.Invoke(); break;
+                case PubsubOperation.Pong:
+                    HeartbeatAck?.Invoke();
+                    break;
+                case PubsubOperation.Reconnect:
+                    Reconnect?.Invoke();
+                    throw new TimeoutException("Server requested a reconnect");
+                case PubsubOperation.Message:
+                    HandleDispatchEvent(evnt);
+                    break;
+            }
+        }
+        private void HandleDispatchEvent(PubsubPayload evnt)
+        {
+            switch (evnt.Data.Value.Topic.DispatchType)
+            {
+                case PubsubDispatchType.BitsV1:
+                    var bitsv1Event = Serializer.Read<EventData<BitsEvent>>(evnt.Data.Value.Data.Bytes);
+                    BitsV1?.Invoke(bitsv1Event);
+                    break;
+                case PubsubDispatchType.BitsV2:
+                    var bitsv2Event = Serializer.Read<EventData<BitsEvent>>(evnt.Data.Value.Data.Bytes);
+                    BitsV2?.Invoke(bitsv2Event);
+                    break;
+                case PubsubDispatchType.BitsBadgeUnlock:
+                    var bitsBadgeEvent = Serializer.Read<BitsBadgeEvent>(evnt.Data.Value.Data.Bytes);
+                    BitsBadgeUnlock?.Invoke(bitsBadgeEvent);
+                    break;
+                case PubsubDispatchType.ChannelSubscriptionV1:
+                    var channelSubscribeEvent = Serializer.Read<ChannelSubscribeEvent>(evnt.Data.Value.Data.Bytes);
+                    ChannelSubscriptionV1?.Invoke(channelSubscribeEvent);
+                    break;
+                case PubsubDispatchType.CommerceV1:
+                    var commerceEvent = Serializer.Read<CommerceEvent>(evnt.Data.Value.Data.Bytes);
+                    CommerceV1?.Invoke(commerceEvent);
+                    break;
+                case PubsubDispatchType.Whisper:
+                    var whisperEvent = Serializer.Read<WhisperEvent>(evnt.Data.Value.Data.Bytes);
+                    Whisper?.Invoke(whisperEvent);
+                    break;
             }
         }
 
@@ -261,14 +307,14 @@ namespace Akitaux.Twitch.Chat
                 }
             });
         }
-        public void Send(IrcMessage payload)
+        public void Send(PubsubPayload payload)
         {
             if (!_runCts.IsCancellationRequested)
                 _sendQueue?.Add(payload);
         }
-        private async Task SendAsync(ClientWebSocket client, CancellationToken cancelToken, IrcMessage payload)
+        private async Task SendAsync(ClientWebSocket client, CancellationToken cancelToken, PubsubPayload payload)
         {
-            var writer = IrcParser.Write(payload, Serializer);
+            var writer = Serializer.Write(payload);
             await client.SendAsync(writer.AsSegment(), WebSocketMessageType.Text, true, cancelToken);
             SentPayload?.Invoke(payload);
         }
@@ -305,6 +351,9 @@ namespace Akitaux.Twitch.Chat
             Stop();
         }
 
-        private void SendHeartbeatAck() => Send(new IrcMessage(IrcCommand.Ping, Utf8String.Empty));
+        private void SendHeartbeatAck() => Send(new PubsubPayload
+        {
+            Operation = PubsubOperation.Ping
+        });
     }
 }
