@@ -355,5 +355,17 @@ namespace Akitaux.Twitch.Pubsub
         {
             Operation = PubsubOperation.Ping
         });
+
+        public void SendListenAsync(Topic topic, string token) 
+            => SendListenAsync(topic, new Utf8String(token));
+        public void SendListenAsync(Topic topic, Utf8String token) => Send(new PubsubPayload
+        {
+            Operation = PubsubOperation.Listen,
+            Data = new PubsubData
+            {
+                Topic = topic,
+                Token = token
+            }
+        });
     }
 }
