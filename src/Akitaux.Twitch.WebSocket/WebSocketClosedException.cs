@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Net.WebSockets;
 
-namespace Akitaux.Twitch.Chat
+namespace Akitaux.Twitch
 {
     public class WebSocketClosedException : Exception
     {
