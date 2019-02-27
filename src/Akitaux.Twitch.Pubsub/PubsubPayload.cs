@@ -19,6 +19,8 @@ namespace Akitaux.Twitch.Pubsub
     {
         [ModelProperty("topic")]
         public Topic Topic { get; set; }
+        [ModelProperty("auth_token")]
+        public Optional<Utf8String> Token { get; set; }
         [ModelProperty("data")]
         public Utf8String Data { get; set; }
 
