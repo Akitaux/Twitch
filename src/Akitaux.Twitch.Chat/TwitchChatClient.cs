@@ -13,6 +13,14 @@ using Voltaic.Serialization.Utf8;
 
 namespace Akitaux.Twitch.Chat
 {
+    public enum ConnectionState
+    {
+        Disconnected,
+        Connecting,
+        Connected,
+        Disconnecting
+    }
+
     public class TwitchChatClient : IDisposable
     {
         public static string Version { get; } =
