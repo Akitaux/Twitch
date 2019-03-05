@@ -35,7 +35,7 @@ namespace Akitaux.Twitch.Helix.Entities
         public Optional<Utf8String> Language { get; set; }
         [ModelProperty("type")]
         public Optional<VideoType> Type { get; set; }
-        [ModelProperty("viewable")]
+        [ModelProperty("duration")]
         public Optional<TimeSpan> Duration { get; set; }
 
         // Get Stream Markers
