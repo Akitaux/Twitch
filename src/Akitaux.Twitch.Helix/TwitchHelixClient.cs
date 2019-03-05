@@ -21,7 +21,7 @@ namespace Akitaux.Twitch.Helix
         private readonly IHelixRestApi _api;
         
         public AuthenticationHeaderValue Authorization { get => _api.Authorization; set => _api.Authorization = value; }
-        public NameValueHeaderValue ClientId { get => _api.ClientId; set => _api.ClientId = value; }
+        public Utf8String ClientId { get => _api.ClientId; set => _api.ClientId = value; }
 
         public TwitchJsonSerializer JsonSerializer { get; }
 

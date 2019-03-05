@@ -13,7 +13,7 @@ namespace Akitaux.Twitch.Helix
         [Header("Authorization")]
         AuthenticationHeaderValue Authorization { get; set; }
         [Header("Client-ID")]
-        NameValueHeaderValue ClientId { get; set; }
+        Utf8String ClientId { get; set; }
 
         // Analytics
         [Get("analytics/extensions")]

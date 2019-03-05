@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Net.Http.Headers;
 using RestEase;
+using Voltaic;
 
 namespace Akitaux.Twitch.Kraken
 {
@@ -9,6 +10,6 @@ namespace Akitaux.Twitch.Kraken
         [Header("Authorization")]
         AuthenticationHeaderValue Authorization { get; set; }
         [Header("Client-ID")]
-        NameValueHeaderValue ClientId { get; set; }
+        Utf8String ClientId { get; set; }
     }
 }

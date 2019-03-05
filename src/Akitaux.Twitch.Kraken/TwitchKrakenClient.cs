@@ -4,6 +4,7 @@ using System.Net.Http.Headers;
 using System.Reflection;
 using Akitaux.Twitch.Rest;
 using RestEase;
+using Voltaic;
 
 namespace Akitaux.Twitch.Kraken
 {
@@ -17,7 +18,7 @@ namespace Akitaux.Twitch.Kraken
         private readonly IKrakenRestApi _api;
 
         public AuthenticationHeaderValue Authorization { get => _api.Authorization; set => _api.Authorization = value; }
-        public NameValueHeaderValue ClientId { get => _api.ClientId; set => _api.ClientId = value; }
+        public Utf8String ClientId { get => _api.ClientId; set => _api.ClientId = value; }
 
         public TwitchJsonSerializer JsonSerializer { get; }
 
