@@ -2,6 +2,7 @@
 
 namespace Akitaux.Twitch.Helix.Entities
 {
+    [ModelStringEnum]
     public enum UserType
     {
         [ModelEnumValue("", type: EnumValueType.ReadOnly)]

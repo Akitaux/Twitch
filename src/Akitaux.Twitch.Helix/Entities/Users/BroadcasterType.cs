@@ -2,6 +2,7 @@
 
 namespace Akitaux.Twitch.Helix.Entities
 {
+    [ModelStringEnum]
     public enum BroadcasterType
     {
         [ModelEnumValue("", type: EnumValueType.ReadOnly)]
