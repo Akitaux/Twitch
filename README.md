@@ -2,7 +2,7 @@
 
 # Twitch
 
-A low-level implementation of the Twitch Apis, mirroring structure from Wumpus.Net
+A [Wumpus-style](https://github.com/discord-net/Wumpus.Net), low-level implementation of the Twitch Apis.
 
 ### Builds
 
@@ -18,12 +18,12 @@ Authentication and a basic request to get online streams.
 ```csharp
 var helix = new TwitchHelixClient
 {
-    Authorization = new AuthenticationHeaderValue("Bearer", "token")
+    Authorization = new AuthenticationHeaderValue("Bearer", "oauth token")
 };
 
 var response = await helix.GetStreamsAsync(new GetStreamsParams
 {
-    UserNames = new[] { new Utf8String("emongg"), new Utf8String("timthetatman") }
+    UserNames = new[] { (Utf8String)"emongg"), (Utf8String)"timthetatman" }
 });
 
 foreach (var stream in response.Data)
@@ -37,8 +37,8 @@ var chat = new TwitchChatClient();
 
 chat.Connected += () =>
 {
-    chat.Send(new IrcMessage(IrcCommand.Nickname, "username"));
-    chat.Send(new IrcMessage(IrcCommand.Password, "token"));
+    chat.Send(new IrcMessage(IrcCommand.Nickname, "justinfan42069"));
+    chat.Send(new IrcMessage(IrcCommand.Password, "justinfan42069"));
     chat.Send(new IrcMessage(IrcCommand.Join, "#emongg"));
 };
 chat.ReceivedPayload += (payload, n) =>
@@ -59,7 +59,7 @@ pubsub.Connected += () =>
 {
     pubsub.SendListenAsync(
         new Topic(PubsubDispatchType.ChannelSubscriptionV1, 1234567),
-        "token");
+        "oauth token");
 };
 pubsub.ChannelSubscriptionV1 += (sub) =>
 {
