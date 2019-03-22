@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Voltaic;
 
 namespace Akitaux.Twitch.Helix.Requests
@@ -13,7 +14,7 @@ namespace Akitaux.Twitch.Helix.Requests
         {
             var dict = new Dictionary<string, object>();
             if (GameIds.IsSpecified)
-                dict["id"] = GameIds.Value;
+                dict["id"] = GameIds.Value.Select(x => x.ToString());
             if (Names.IsSpecified)
                 dict["name"] = Names.Value;
             return dict;

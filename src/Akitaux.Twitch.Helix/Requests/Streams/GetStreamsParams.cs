@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Voltaic;
 
 namespace Akitaux.Twitch.Helix.Requests
@@ -20,11 +21,11 @@ namespace Akitaux.Twitch.Helix.Requests
             if (CommunityIds.IsSpecified)
                 dict["community_id"] = CommunityIds.Value;
             if (GameIds.IsSpecified)
-                dict["game_id"] = GameIds.Value;
+                dict["game_id"] = GameIds.Value.Select(x => x.ToString());
             if (Languages.IsSpecified)
                 dict["language"] = Languages.Value;
             if (UserIds.IsSpecified)
-                dict["user_id"] = UserIds.Value;
+                dict["user_id"] = UserIds.Value.Select(x => x.ToString());
             if (UserNames.IsSpecified)
                 dict["user_login"] = UserNames.Value;
             if (First.IsSpecified)

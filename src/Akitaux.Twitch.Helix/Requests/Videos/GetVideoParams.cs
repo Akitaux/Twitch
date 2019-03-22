@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Akitaux.Twitch.Helix.Entities;
 using Voltaic;
 
@@ -24,7 +25,7 @@ namespace Akitaux.Twitch.Helix.Requests
         {
             var dict = new Dictionary<string, object>();
             if (VideoIds.IsSpecified)
-                dict["id"] = VideoIds.Value;
+                dict["id"] = VideoIds.Value.Select(x => x.ToString());
             if (UserId.IsSpecified)
                 dict["user_id"] = UserId.Value;
             if (GameId.IsSpecified)
